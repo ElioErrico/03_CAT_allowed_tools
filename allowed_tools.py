@@ -10,6 +10,8 @@ def _load_tools_status(path: str = TOOLS_PATH) -> dict:
     except Exception:
         return {}
 
+Internet_Search = "Internet Search"
+
 @hook  # default priority = 1
 def agent_allowed_tools(allowed_tools, cat):
     ts = _load_tools_status()
@@ -22,4 +24,11 @@ def agent_allowed_tools(allowed_tools, cat):
         if bool(cfg.get("user_id_tool_status", {}).get(uid, False))
     ]
     cat.send_ws_message(str(enabled_tools),"chat")
+    
+    if Internet_Search in enabled_tools:
+        enabled_tools.remove(Internet_Search)
+        enabled_tools.append("duck_duck_go_search")
+        enabled_tools.append("crawl_site_content")
+
+
     return enabled_tools
