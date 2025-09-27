@@ -23,7 +23,7 @@ def agent_allowed_tools(allowed_tools, cat):
         for tool_key, cfg in tools_cfg.items()
         if bool(cfg.get("user_id_tool_status", {}).get(uid, False))
     ]
-    cat.send_ws_message(str(enabled_tools),"chat")
+    # cat.send_ws_message(str(enabled_tools),"chat")
     
     if Internet_Search in enabled_tools:
         enabled_tools.remove(Internet_Search)
