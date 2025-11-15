@@ -87,6 +87,10 @@ def get_enabled_tools(cat, path: str = TOOLS_PATH):
         enabled_tools.remove("Report Maker")
         enabled_tools.append("create_report_in_word")
 
+    if "Plan and Execute" in enabled_tools:
+        enabled_tools.remove("Plan and Execute")
+        enabled_tools.append("plan_and_execute")
+
     # INSERISCI NUOVO TOOL MAPPING QUI
     # Esempio:
     # if "Nome User Friendly" in enabled_tools:
@@ -169,6 +173,9 @@ def agent_prompt_prefix(prefix, cat):
 
     if "create_report_in_word" in enabled_tools:
         lines.append(settings["create_report_in_word_description"])
+    
+    if "plan_and_execute" in enabled_tools:
+        lines.append(settings["plan_and_execute_description"])
             
     # INSERISCI NUOVO TOOL DESCRIPTION QUI
     # Esempio base:
